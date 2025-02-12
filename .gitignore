@@ -1,0 +1,11 @@
+csharp/bin
+csharp/obj
+
+go/libgo.*
+
+rust/target/
+
+zig/.zig-cache/
+zig/zig-out/
+
+libs/
