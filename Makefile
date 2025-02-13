@@ -3,6 +3,7 @@
 all: run
 
 go:
+	-rm -rf ./libs && mkdir ./libs
 	go build -C ./go -buildmode=c-archive -ldflags="-w -s"
 	cp ./go/libgo.a ./libs/
 
@@ -17,6 +18,6 @@ zig:
 	cp ./zig/zig-out/lib/libzig.a ./libs/
 
 run: go rust zig
-	clang -c ./test/main.c -o ./test/main.o
-	clang -static ./test/main.o -L./libs -lgo -lrust -lzig -o ./test/test
+	gcc -c ./test/main.c -o ./test/main.o
+	gcc ./test/main.o -L./libs -lgo -lrust -lzig -o ./test/test
 	./test/test
